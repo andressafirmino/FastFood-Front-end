@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Order from "./pages/OrderPage/OrderPage";
-import Header from "./components/ Header/ Header";
 import Kitchen from "./pages/KitchenPage/KitchenPage";
 import Withdrawal from "./pages/WithdrawalPage/WithdrawalPage";
+import Header from "./components/ Header/ Header";
 
 function App() {
 
@@ -11,8 +11,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Order />}></Route>
-        <Route path="/cozinha" element={<Kitchen />} />
-        <Route path="/retirada" element={<Withdrawal />} />
+        <Route path="/cozinha" element={<Kitchen />}></Route>
+        <Route path="/retirada" element={<Withdrawal />}></Route>
       </Routes>
     </BrowserRouter>
   )
