@@ -16,7 +16,12 @@ export const Subtitle = styled.p`
     font-size: 15px;
     font-weight: 200;
     color: #000000;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+`
+
+export const CategoriesContainer = styled.div`
+    display: flex;
+    margin-bottom: 30px;
 `
 export const ProductsContainer = styled.div`
     display: flex;

@@ -45,7 +45,7 @@ export const ProductContainer = styled.div`
     .price {
         margin: 18px 0;
         font-size: 17px;
-        font-weight: 700;
+        font-weight: 600;
     }
 
     .description {

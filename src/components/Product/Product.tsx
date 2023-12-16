@@ -12,7 +12,7 @@ export default function Product({ props }: any) {
             <div className="information">
                 <p className="name">{props.name}</p>
                 <p className="description">{props.description}</p>
-                <p className="price">R$ {pricePtBr}</p>
+                <p className="price">{pricePtBr}</p>
             </div>
         </ProductContainer>
     )

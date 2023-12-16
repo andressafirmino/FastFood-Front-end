@@ -1,6 +1,7 @@
+import Category from "../../components/Category/Category";
 import Product from "../../components/Product/Product";
 import Search from "../../components/Search/Search";
-import { OrderContainer, ProductsContainer, Subtitle, Title } from "./style";
+import { CategoriesContainer, OrderContainer, ProductsContainer, Subtitle, Title } from "./style";
 
 export default function Order() {
 
@@ -56,17 +57,26 @@ export default function Order() {
             image: 'https://static.vecteezy.com/system/resources/previews/022/598/800/non_2x/tasty-beef-burger-png.png',
             category: 'COMBO',
         },
-       
+
     ]
 
     return (
         <OrderContainer>
             <Search></Search>
+
+            <Title>Categorias</Title>
+            <Subtitle>Navegue por categoria</Subtitle>
+            <CategoriesContainer>
+                <Category></Category>
+            </CategoriesContainer>
+
             <Title>Produtos</Title>
+
             <Subtitle>Selecione um produto para adicionar ao seu pedido</Subtitle>
+
             <ProductsContainer>
-            {products.map(props => <Product props={props} />)} 
-            </ProductsContainer>                       
+                {products.map(props => <Product props={props} />)}
+            </ProductsContainer>
         </OrderContainer>
     )
 }
