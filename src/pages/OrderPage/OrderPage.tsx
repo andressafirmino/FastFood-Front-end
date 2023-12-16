@@ -1,4 +1,5 @@
 import Category from "../../components/Category/Category";
+import FinalizeOrder from "../../components/FinalizeOrder/FinalizeOrder";
 import Product from "../../components/Product/Product";
 import Search from "../../components/Search/Search";
 import { CategoriesContainer, OrderContainer, ProductsContainer, Subtitle, Title } from "./style";
@@ -77,6 +78,8 @@ export default function Order() {
             <ProductsContainer>
                 {products.map(props => <Product props={props} />)}
             </ProductsContainer>
+
+            <FinalizeOrder></FinalizeOrder>
         </OrderContainer>
     )
 }
