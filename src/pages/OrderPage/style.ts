@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const OrderContainer = styled.div`
     width: 900px;
     height: calc(100vh - 40px);
-    background-color: antiquewhite;
     margin: 60px auto 0;
     padding-left: 16px;
 `

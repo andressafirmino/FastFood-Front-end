@@ -10,6 +10,8 @@ export const ProductContainer = styled.div`
     margin-bottom: 30px;
     position: relative;
     background-color: #fb6868;
+    box-shadow: 0px 4px 6px 0px #0000000D;
+
     /* background-image: url(${Cutlery});
     background-size: cover; 
     background-position: center; */

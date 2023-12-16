@@ -1,4 +1,5 @@
 import Product from "../../components/Product/Product";
+import Search from "../../components/Search/Search";
 import { OrderContainer, ProductsContainer, Subtitle, Title } from "./style";
 
 export default function Order() {
@@ -60,6 +61,7 @@ export default function Order() {
 
     return (
         <OrderContainer>
+            <Search></Search>
             <Title>Produtos</Title>
             <Subtitle>Selecione um produto para adicionar ao seu pedido</Subtitle>
             <ProductsContainer>
