@@ -1,14 +1,8 @@
+import { ProductType } from "../../protocols";
 import { ProductContainer } from "./style";
 
-interface ProductProps {
-    name: string;
-    price: number;
-    description: string;
-    image: string;
-}
+export default function Product({ name, price, description, image }: ProductType) {
 
-export default function Product({ name, price, description, image }: ProductProps) {
-    
     const pricePtBr = (price / 100).toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL",
