@@ -7,6 +7,7 @@ import Search from "../../components/Search/Search";
 import { CategoriesContainer, Loading, OrderContainer, ProductsContainer, Subtitle, Title } from "./style";
 import axios from "axios";
 import { ProductContext } from "../../context/products";
+import ProductDetail from "../../components/ ProductDetails/ ProductDetails";
 
 export default function Order() {
 
@@ -29,6 +30,7 @@ export default function Order() {
 
     return (
         <OrderContainer>
+            <ProductDetail></ProductDetail>
             <Search></Search>
 
             <Title>Categorias</Title>
