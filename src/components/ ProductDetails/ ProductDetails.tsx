@@ -1,4 +1,4 @@
-import { AdditionalContainer, CounterButton, DetailBox, DetailContainer, DetailItem, ObservationContainer } from "./style";
+import { AdditionalContainer, ButtonBoxDetails, CounterButton, DetailBox, DetailContainer, DetailItem, ObservationContainer, SummaryContainer } from "./style";
 
 export default function ProductDetail() {
     return (
@@ -6,6 +6,7 @@ export default function ProductDetail() {
             <DetailBox>
                 <h1>Revise seu pedido!</h1>
                 <DetailItem>
+                    <p className="close">X</p>
                     <div className="image-box">
                         <img src="https://static.vecteezy.com/system/resources/previews/021/217/130/original/petit-gateau-dessert-png.png" />
                         <div className="image-box-bottom"></div>
@@ -14,9 +15,9 @@ export default function ProductDetail() {
                         <p className="name">X-burguer</p>
                         <p className="description-text">2 hambugueres, queijo, cheddar, tomate, alface</p>
                         <CounterButton>
-                            <button>-</button>
+                            <button><p>-</p></button>
                             <div>1</div>
-                            <button>+</button>
+                            <button><p>+</p></button>
                         </CounterButton>
                     </div>
                     <div className="price"><p>30,00</p></div>
@@ -42,6 +43,19 @@ export default function ProductDetail() {
                     <h2>Observações</h2>
                     <textarea className="observation-box" placeholder="Adicione uma observação ao pedido"></textarea>
                 </ObservationContainer>
+                <SummaryContainer>
+                    <div className="summary-details">
+                        <p>1x X-burguer</p>
+                        <p>30,00</p>
+                    </div>
+                    <div className="dashed-line"></div>
+                    <p>Total do pedido:</p>
+                    <div className="total">30,00</div>
+                </SummaryContainer>
+                <ButtonBoxDetails>
+                    <button>Cancelar</button>
+                    <button>Adicionar ao carrinho</button>
+                </ButtonBoxDetails>
             </DetailBox>
         </DetailContainer>
     )
