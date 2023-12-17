@@ -30,19 +30,24 @@ export const HeaderLinks = styled.div`
     align-items: center;
     justify-content: space-around;
 
-    div {
+    a {
         width: 90px;
         height: 25px;
         border-radius: 5px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #0c400d;
+        color:#FFFFFF;
+        background-color: #125c13;
+       
+        &.selected {
+            background-color: #0c400d;
+        }
 
         p {
             font-size: 15px;
             font-weight: 400;
-            color: #FFFFFF;
+            color: inherit;
         }
     }
 `
