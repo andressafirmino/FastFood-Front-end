@@ -16,7 +16,6 @@ export const DetailContainer = styled.div`
 `
 export const DetailBox = styled.div`
     width: 700px;
-    height: 500px;
     background-color: #FFFFFF;
     border-radius: 20px;
     padding: 50px;
@@ -34,6 +33,7 @@ export const DetailItem = styled.div`
     justify-content: space-between;
     width: 100%;
     height: 120px;
+    margin-bottom: 40px;
 
     .image-box {
         width: 150px;
@@ -92,7 +92,6 @@ export const DetailItem = styled.div`
         }
     }
 `
-
 export const CounterButton = styled.div`
     width: 84px;
     height: 29px;
@@ -124,5 +123,80 @@ export const CounterButton = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+`
+export const AdditionalContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 15px;
+        font-weight: 200;
+        margin-bottom: 20px;
+    }
+
+    .additional-box {
+        display: flex;
+
+        .additional-image {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            box-shadow: 0px 4px 6px 0px #0000000D;
+            margin-right: 20px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .additional-description {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+
+            .additional-name {
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+
+            .additional-text {
+                font-size: 10px;
+                font-weight: 200;
+            }
+        }
+
+        .additional-price-box {
+            width: 120px;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .additional-price{
+                font-size: 15px;
+                font-weight: 500;
+                color: #9f9f9f;
+            }
+
+            button {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: #FFFFFF;
+                border: 1.5px solid #125c13;
+            }
+        }
     }
 `
