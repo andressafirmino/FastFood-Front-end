@@ -1,4 +1,4 @@
-import { AdditionalContainer, CounterButton, DetailBox, DetailContainer, DetailItem } from "./style";
+import { AdditionalContainer, CounterButton, DetailBox, DetailContainer, DetailItem, ObservationContainer } from "./style";
 
 export default function ProductDetail() {
     return (
@@ -38,6 +38,10 @@ export default function ProductDetail() {
                         </div>
                     </div>
                 </AdditionalContainer>
+                <ObservationContainer>
+                    <h2>Observações</h2>
+                    <textarea className="observation-box" placeholder="Adicione uma observação ao pedido"></textarea>
+                </ObservationContainer>
             </DetailBox>
         </DetailContainer>
     )
