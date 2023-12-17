@@ -1,29 +1,28 @@
 import styled from "styled-components";
 
 export const OrderContainer = styled.div`
-    width: 900px;
-    height: calc(100vh - 40px);
+    width: 1350px;
+    height: calc(100vh - 60px);
     margin: 60px auto 0;
-    padding-left: 16px;
+    padding-left: 24px;
 `
 export const Title = styled.p`
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     color: #000000;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 `
 export const Subtitle = styled.p`
-    font-size: 15px;
+    font-size: 22px;
     font-weight: 200;
     color: #000000;
-    margin-bottom: 30px;
+    margin-bottom: 45px;
 `
-
 export const CategoriesContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
-    margin-right: 20px;
+    margin-bottom: 45px;
+    margin-right: 30px;
 `
 export const ProductsContainer = styled.div`
     display: flex;
@@ -36,5 +35,5 @@ export const ProductsContainer = styled.div`
 export const Loading = styled.img `
     width: 30%; 
     display: block;
-    margin: 100px auto;
+    margin: 150px auto;
 `

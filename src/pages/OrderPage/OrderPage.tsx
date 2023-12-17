@@ -30,7 +30,7 @@ export default function Order() {
 
     return (
         <OrderContainer>
-            <ProductDetail></ProductDetail>
+            {/* <ProductDetail></ProductDetail> */}
             <Search></Search>
 
             <Title>Categorias</Title>
