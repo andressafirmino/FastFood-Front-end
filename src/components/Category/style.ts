@@ -8,7 +8,9 @@ export const CategoryContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: center;
+    align-items: center;  
+    cursor: pointer;
+       
 
     .name {
         margin: 18px 0;

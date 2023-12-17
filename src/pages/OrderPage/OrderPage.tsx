@@ -1,20 +1,18 @@
 /// <reference types="node" />
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Category from "../../components/Category/Category";
 import FinalizeOrder from "../../components/FinalizeOrder/FinalizeOrder";
 import Product from "../../components/Product/Product";
 import Search from "../../components/Search/Search";
 import { CategoriesContainer, Loading, OrderContainer, ProductsContainer, Subtitle, Title } from "./style";
 import axios from "axios";
-import { CategoryType, ProductType } from "../../protocols";
+import { ProductContext } from "../../context/products";
 
 export default function Order() {
 
-    const [categories, setCategories] = useState<CategoryType[]>([]);
-    const [products, setProducts] = useState<ProductType[]>([]);
-    const [sideDishes, setSideDishes] = useState([]);
-   
-    useEffect(() => {        
+    const { categories, setCategories, products, setProducts, setSideDishes } = useContext(ProductContext);
+    
+    useEffect(() => {
         const url = `${import.meta.env.VITE_API_URL}/`;
         axios.get(url)
             .then(response => {
@@ -25,7 +23,7 @@ export default function Order() {
             .catch(e => console.log(e.message))
     }, []);
 
-    if(products.length === 0) {
+    if (products === undefined || products.length === 0) {
         return <Loading src="https://media.tenor.com/t5DMW5PI8mgAAAAi/loading-green-loading.gif"></Loading>;
     }
 
@@ -36,8 +34,8 @@ export default function Order() {
             <Title>Categorias</Title>
             <Subtitle>Navegue por categoria</Subtitle>
             <CategoriesContainer>
-                {categories.map((cat, i) => <Category key={i} {...cat}/>)}
-                
+                {categories.map((cat, i) => <Category key={i} {...cat} />)}
+
             </CategoriesContainer>
 
             <Title>Produtos</Title>
@@ -45,7 +43,7 @@ export default function Order() {
             <Subtitle>Selecione um produto para adicionar ao seu pedido</Subtitle>
 
             {<ProductsContainer>
-                {products.map((prod, i)=> <Product key={i} {...prod} />)}
+                {products.map((prod, i) => <Product key={i} {...prod} />)}
             </ProductsContainer>}
 
             <FinalizeOrder></FinalizeOrder>
