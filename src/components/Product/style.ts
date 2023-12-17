@@ -9,7 +9,7 @@ export const ProductContainer = styled.div`
     margin-right: 60px;
     margin-bottom: 30px;
     position: relative;
-    background-color: #fb6868;
+    background-color: #125c13;
     box-shadow: 0px 4px 6px 0px #0000000D;
 
     /* background-image: url(${Cutlery});

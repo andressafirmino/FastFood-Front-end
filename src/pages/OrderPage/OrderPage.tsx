@@ -4,7 +4,7 @@ import Category from "../../components/Category/Category";
 import FinalizeOrder from "../../components/FinalizeOrder/FinalizeOrder";
 import Product from "../../components/Product/Product";
 import Search from "../../components/Search/Search";
-import { CategoriesContainer, OrderContainer, ProductsContainer, Subtitle, Title } from "./style";
+import { CategoriesContainer, Loading, OrderContainer, ProductsContainer, Subtitle, Title } from "./style";
 import axios from "axios";
 import { CategoryType, ProductType } from "../../protocols";
 
@@ -26,7 +26,7 @@ export default function Order() {
     }, []);
 
     if(products.length === 0) {
-        return <p>Carregando</p>;
+        return <Loading src="https://media.tenor.com/t5DMW5PI8mgAAAAi/loading-green-loading.gif"></Loading>;
     }
 
     return (
