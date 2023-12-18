@@ -7,7 +7,7 @@ import OrdemCompleted from "../OrderCompleted/OrderCompleted";
 export default function Payment() {
     return (
         <PaymentContainer>
-            <OrdemCompleted />
+            {/* <OrdemCompleted /> */}
             <div className="payment">
                 <WalletIconStyle />
                 <p>Pagamento</p>
