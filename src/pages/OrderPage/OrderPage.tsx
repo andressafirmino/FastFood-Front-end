@@ -32,7 +32,7 @@ export default function Order() {
 
     return (
         <OrderContainer>
-            {/* {selected && (
+            {selected && (
                 <ProductDetail {...selectedProduct as ProductType} />
             )}
             <Search></Search>
@@ -51,8 +51,8 @@ export default function Order() {
                 {products.map((prod, i) => <Product key={i} {...prod} />)}
             </ProductsContainer>}
 
-            <FinalizeOrder></FinalizeOrder> */}
-            <Payment />
+            <FinalizeOrder></FinalizeOrder>
+            {/* <Payment /> */}
         </OrderContainer>
     )
 }
