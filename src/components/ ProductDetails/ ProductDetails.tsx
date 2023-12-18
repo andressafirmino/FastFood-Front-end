@@ -1,11 +1,37 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductType } from "../../protocols";
 import CurrencyConversion from "../../utils/CurrencyConversion";
 import { AdditionalContainer, ButtonBoxDetails, CounterButton, DetailBox, DetailContainer, DetailItem, ObservationContainer, SummaryContainer } from "./style";
 import { ProductContext } from "../../context/products";
 
-export default function ProductDetail({ name, image, description, price }: ProductType) {
-    const { sideDishes, setSelected } = useContext(ProductContext);
+export default function ProductDetail({ id, name, image, description, price }: ProductType) {
+    const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts } = useContext(ProductContext);
+    const [counter, setCounter] = useState(1);
+    const [subtotal, setSubtotal] = useState(CurrencyConversion(price));
+
+    function minus() {
+        if (counter === 0 || total === 0) {
+            return;
+        }
+        if (counter === 1) {
+            const newArray = [...cartProducts];
+            let position = newArray.findIndex(item => item.id === id);
+            let remove = newArray.splice(position, 1);
+            setCartProducts(newArray);
+        }
+        const newCounter = counter - 1;
+        setCounter(newCounter > 0 ? newCounter : 0);
+        const newSubtotal = (newCounter * price).toLocaleString("pt-BR");
+        setSubtotal(newSubtotal);
+        setTotal((prevTotal) => prevTotal - price);
+    }
+    function plus() {
+        const newCounter = counter + 1;
+        setCounter(newCounter);
+        const newSubtotal = (newCounter * price).toLocaleString("pt-BR");
+        setSubtotal(newSubtotal);
+        setTotal((prevTotal) => prevTotal + price);
+    }
 
     return (
         <DetailContainer>
@@ -21,9 +47,9 @@ export default function ProductDetail({ name, image, description, price }: Produ
                         <p className="name">{name}</p>
                         <p className="description-text">{description}</p>
                         <CounterButton>
-                            <button><p>-</p></button>
-                            <div>1</div>
-                            <button><p>+</p></button>
+                            <button onClick={minus}><p>-</p></button>
+                            <div>{counter}</div>
+                            <button onClick={plus}><p>+</p></button>
                         </CounterButton>
                     </div>
                     <div className="price"><p>{CurrencyConversion(price)}</p></div>
@@ -56,12 +82,12 @@ export default function ProductDetail({ name, image, description, price }: Produ
 
                 <SummaryContainer>
                     <div className="summary-details">
-                        <p>1x {name}</p>
-                        <p>{CurrencyConversion(price)}</p>
+                        <p>{counter}x {name}</p>
+                        <p>{CurrencyConversion(counter * price)}</p>
                     </div>
                     <div className="dashed-line"></div>
                     <p>Total do pedido:</p>
-                    <div className="total">{CurrencyConversion(price)}</div>
+                    <div className="total">{CurrencyConversion(counter * price)}</div>
                 </SummaryContainer>
 
                 <ButtonBoxDetails>

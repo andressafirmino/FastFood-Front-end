@@ -14,8 +14,8 @@ import Payment from "../../components/Payment/Payment";
 export default function Order() {
 
     const { categories, setCategories, products, setProducts, setSideDishes,
-        selected, selectedProduct, productsList } = useContext(ProductContext);
-
+        selected, selectedProduct, productsList, cartProducts } = useContext(ProductContext);
+    console.log(cartProducts)
     useEffect(() => {
         const url = `${import.meta.env.VITE_API_URL}/`;
         axios.get(url)
