@@ -7,10 +7,7 @@ import CurrencyConversion from "../../utils/CurrencyConversion";
 export default function Product({ id, name, price, description, image }: ProductType) {
 
     const { setSelected, setSelectedProduct } = useContext(ProductContext)
-   /*  const pricePtBr = (price / 100).toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-    }); */
+  
     return (
         <ProductContainer onClick={() => { setSelectedProduct({ id, name, price, description, image }), setSelected(true) }}>
             <div className="img"><img src={image} /></div>
