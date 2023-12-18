@@ -13,6 +13,10 @@ export type ProductType = {
     image: string;
 }
 
+export type EmptyProduct = {};
+
+export type ProductOrEmpty = EmptyProduct | ProductType;
+
 export type SideDishType = {
     id: number;
     name: string;

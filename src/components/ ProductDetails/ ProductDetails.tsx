@@ -1,6 +1,9 @@
+import { ProductType } from "../../protocols";
+import CurrencyConversion from "../../utils/CurrencyConversion";
 import { AdditionalContainer, ButtonBoxDetails, CounterButton, DetailBox, DetailContainer, DetailItem, ObservationContainer, SummaryContainer } from "./style";
 
-export default function ProductDetail() {
+export default function ProductDetail({ name, image, description, price }: ProductType) {
+
     return (
         <DetailContainer>
             <DetailBox>
@@ -8,19 +11,19 @@ export default function ProductDetail() {
                 <DetailItem>
                     <p className="close">X</p>
                     <div className="image-box">
-                        <img src="https://static.vecteezy.com/system/resources/previews/021/217/130/original/petit-gateau-dessert-png.png" />
+                        <img src={image} />
                         <div className="image-box-bottom"></div>
                     </div>
                     <div className="description-box">
-                        <p className="name">X-burguer</p>
-                        <p className="description-text">2 hambugueres, queijo, cheddar, tomate, alface</p>
+                        <p className="name">{name}</p>
+                        <p className="description-text">{description}</p>
                         <CounterButton>
                             <button><p>-</p></button>
                             <div>1</div>
                             <button><p>+</p></button>
                         </CounterButton>
                     </div>
-                    <div className="price"><p>30,00</p></div>
+                    <div className="price"><p>{CurrencyConversion(price)}</p></div>
                 </DetailItem>
                 <AdditionalContainer>
                     <h2>Adicionais</h2>
@@ -45,12 +48,12 @@ export default function ProductDetail() {
                 </ObservationContainer>
                 <SummaryContainer>
                     <div className="summary-details">
-                        <p>1x X-burguer</p>
-                        <p>30,00</p>
+                        <p>1x {name}</p>
+                        <p>{CurrencyConversion(price)}</p>
                     </div>
                     <div className="dashed-line"></div>
                     <p>Total do pedido:</p>
-                    <div className="total">30,00</div>
+                    <div className="total">{CurrencyConversion(price)}</div>
                 </SummaryContainer>
                 <ButtonBoxDetails>
                     <button>Cancelar</button>

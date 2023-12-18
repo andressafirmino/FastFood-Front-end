@@ -8,11 +8,12 @@ import { CategoriesContainer, Loading, OrderContainer, ProductsContainer, Subtit
 import axios from "axios";
 import { ProductContext } from "../../context/products";
 import ProductDetail from "../../components/ ProductDetails/ ProductDetails";
+import { ProductType } from "../../protocols";
 
 export default function Order() {
 
-    const { categories, setCategories, products, setProducts, setSideDishes } = useContext(ProductContext);
-    
+    const { categories, setCategories, products, setProducts, setSideDishes, selected, selectedProduct } = useContext(ProductContext);
+
     useEffect(() => {
         const url = `${import.meta.env.VITE_API_URL}/`;
         axios.get(url)
@@ -30,14 +31,15 @@ export default function Order() {
 
     return (
         <OrderContainer>
-            {/* <ProductDetail></ProductDetail> */}
+            {selected && (
+                <ProductDetail {...selectedProduct as ProductType} />
+            )}
             <Search></Search>
 
             <Title>Categorias</Title>
             <Subtitle>Navegue por categoria</Subtitle>
             <CategoriesContainer>
                 {categories.map((cat, i) => <Category key={i} {...cat} />)}
-
             </CategoriesContainer>
 
             <Title>Produtos</Title>
