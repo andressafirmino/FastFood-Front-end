@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { SearchContainer } from "./style";
 import { ProductContext } from "../../context/products";
+import FilteredProducts from "../../utils/FilteredProducts";
 
 export default function Search() {
 
@@ -8,24 +9,19 @@ export default function Search() {
     const [searchText, setSearchText] = useState("");
 
     console.log(productsList)
-    function handleSearch(searchValue: string) {
-        const searchValueLower = searchValue.toLowerCase();
-        const searchedProducts = products.filter(product => (
-            product.id.toString().toLowerCase().includes(searchValueLower)) ||
-            product.name.toLowerCase().includes(searchValueLower) ||
-            product.description.toLowerCase().includes(searchValueLower) ||
-            product.category.toLowerCase().includes(searchValueLower)
-        )
-        setProductsList(searchedProducts);
-    }
+
+    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); 
+        FilteredProducts(searchText, products, setProductsList);
+    };
 
     return (
         <SearchContainer>
             <p>Seja bem-vindo!</p>
-            <form>
+            <form onSubmit={handleFormSubmit}>
                 <input type="text" placeholder="O que você procura?"
                     onChange={(e) => {
-                        handleSearch(e.target.value);
+                        FilteredProducts(e.target.value, products, setProductsList);
                         setSearchText(e.target.value);
                     }}
                     value={searchText} />
