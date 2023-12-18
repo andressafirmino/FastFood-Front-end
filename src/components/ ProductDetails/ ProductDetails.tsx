@@ -3,12 +3,14 @@ import { ProductType } from "../../protocols";
 import CurrencyConversion from "../../utils/CurrencyConversion";
 import { AdditionalContainer, ButtonBoxDetails, CounterButton, DetailBox, DetailContainer, DetailItem, ObservationContainer, SummaryContainer } from "./style";
 import { ProductContext } from "../../context/products";
+import AdditionalToggle from "../../utils/AdditionalToggle";
 
 export default function ProductDetail({ id, name, image, description, price }: ProductType) {
     const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts } = useContext(ProductContext);
     const [counter, setCounter] = useState(1);
     const [subtotal, setSubtotal] = useState(CurrencyConversion(price));
-
+    const [additional, setAdditional] = useState<any[]>([]);
+    console.log(additional)
     function minus() {
         if (counter === 0 || total === 0) {
             return;
@@ -69,7 +71,8 @@ export default function ProductDetail({ id, name, image, description, price }: P
                             </div>
                             <div className="additional-price-box">
                                 <div className="additional-price">{CurrencyConversion(sideD.price)}</div>
-                                <button></button>
+                                <button className={additional.some(product => product.name === sideD.name) ? "selected" : ""}
+                                    onClick={() => AdditionalToggle(sideD.name, sideD.price, additional, setAdditional)}></button>
                             </div>
                         </div>
                     ))}
@@ -85,6 +88,12 @@ export default function ProductDetail({ id, name, image, description, price }: P
                         <p>{counter}x {name}</p>
                         <p>{CurrencyConversion(counter * price)}</p>
                     </div>
+                    {additional.map(add =>
+                        <div className="summary-details">
+                            <p>1x {add.name}</p>
+                            <p>{CurrencyConversion(add.price)}</p>
+                        </div>
+                    )}
                     <div className="dashed-line"></div>
                     <p>Total do pedido:</p>
                     <div className="total">{CurrencyConversion(counter * price)}</div>
