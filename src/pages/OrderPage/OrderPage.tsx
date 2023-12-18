@@ -9,6 +9,7 @@ import axios from "axios";
 import { ProductContext } from "../../context/products";
 import ProductDetail from "../../components/ ProductDetails/ ProductDetails";
 import { ProductType } from "../../protocols";
+import Payment from "../../components/Payment/Payment";
 
 export default function Order() {
 
@@ -31,7 +32,7 @@ export default function Order() {
 
     return (
         <OrderContainer>
-            {selected && (
+            {/* {selected && (
                 <ProductDetail {...selectedProduct as ProductType} />
             )}
             <Search></Search>
@@ -50,7 +51,8 @@ export default function Order() {
                 {products.map((prod, i) => <Product key={i} {...prod} />)}
             </ProductsContainer>}
 
-            <FinalizeOrder></FinalizeOrder>
+            <FinalizeOrder></FinalizeOrder> */}
+            <Payment />
         </OrderContainer>
     )
 }
