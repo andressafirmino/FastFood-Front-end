@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
     width: 100vw;
-    height: 40px;
+    height: 60px;
     background-color: #125c13;
-    padding: 7px;
+    padding: 10px;
 
     display: flex;
     justify-content: space-between;
@@ -13,12 +13,12 @@ export const HeaderLogo = styled.div`
     display: flex;
     align-items: center;
    img {
-    width: 25px;
+    width: 37px;
     height: auto; 
     margin-right: 5px;
    }
    p {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     color: #FFFFFF;
    }
@@ -30,19 +30,24 @@ export const HeaderLinks = styled.div`
     align-items: center;
     justify-content: space-around;
 
-    div {
-        width: 90px;
-        height: 25px;
+    a {
+        width: 135px;
+        height: 37px;
         border-radius: 5px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #0c400d;
+        color:#FFFFFF;
+        background-color: #125c13;
+       
+        &.selected {
+            background-color: #0c400d;
+        }
 
         p {
-            font-size: 15px;
+            font-size: 22px;
             font-weight: 400;
-            color: #FFFFFF;
+            color: inherit;
         }
     }
 `
