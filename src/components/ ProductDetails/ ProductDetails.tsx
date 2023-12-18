@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { ProductType } from "../../protocols";
 import CurrencyConversion from "../../utils/CurrencyConversion";
 import { AdditionalContainer, ButtonBoxDetails, CounterButton, DetailBox, DetailContainer, DetailItem, ObservationContainer, SummaryContainer } from "./style";
+import { ProductContext } from "../../context/products";
 
 export default function ProductDetail({ name, image, description, price }: ProductType) {
+    const { sideDishes } = useContext(ProductContext);
 
     return (
         <DetailContainer>
@@ -25,27 +28,32 @@ export default function ProductDetail({ name, image, description, price }: Produ
                     </div>
                     <div className="price"><p>{CurrencyConversion(price)}</p></div>
                 </DetailItem>
+
                 <AdditionalContainer>
                     <h2>Adicionais</h2>
                     <p>Selecione os ingredientes que você deseja adicionar a mais no seu lanche.</p>
-                    <div className="additional-box">
-                        <div className="additional-image">
-                            <img src="https://i.pinimg.com/originals/4f/3e/e2/4f3ee2cb7508b3edee542b2218635fb1.png" />
+                    {sideDishes.map(sideD => (
+                        <div className="additional-box">
+                            <div className="additional-image">
+                                <img src={sideD.image} />
+                            </div>
+                            <div className="additional-description">
+                                <div className="additional-name">{sideD.name}</div>
+                                <div className="additional-text">{sideD.description}</div>
+                            </div>
+                            <div className="additional-price-box">
+                                <div className="additional-price">{CurrencyConversion(sideD.price)}</div>
+                                <button></button>
+                            </div>
                         </div>
-                        <div className="additional-description">
-                            <div className="additional-name">Barbecue</div>
-                            <div className="additional-text">10g</div>
-                        </div>
-                        <div className="additional-price-box">
-                            <div className="additional-price">1,00</div>
-                            <button></button>
-                        </div>
-                    </div>
+                    ))}
                 </AdditionalContainer>
+
                 <ObservationContainer>
                     <h2>Observações</h2>
                     <textarea className="observation-box" placeholder="Adicione uma observação ao pedido"></textarea>
                 </ObservationContainer>
+
                 <SummaryContainer>
                     <div className="summary-details">
                         <p>1x {name}</p>
@@ -55,6 +63,7 @@ export default function ProductDetail({ name, image, description, price }: Produ
                     <p>Total do pedido:</p>
                     <div className="total">{CurrencyConversion(price)}</div>
                 </SummaryContainer>
+
                 <ButtonBoxDetails>
                     <button>Cancelar</button>
                     <button>Adicionar ao carrinho</button>
