@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 import { ProductType } from "../protocols";
 
-export default function FilteredProducts(value: string, products: ProductType[], setProductsList: Dispatch<SetStateAction<ProductType[]>>) {
+export default function FilteredProducts(value: string, products: ProductType[], 
+    setProductsList: Dispatch<SetStateAction<ProductType[]>>) {
 
     const valueLower = value.toLowerCase();
     const filteredProducts = products.filter(product =>

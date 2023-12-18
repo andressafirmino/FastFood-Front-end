@@ -9,33 +9,39 @@ import SubtotalCalculation from "../../utils/SubtotalCalculation";
 export default function ProductDetail({ id, name, image, description, price }: ProductType) {
     const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts } = useContext(ProductContext);
     const [counter, setCounter] = useState(1);
-    const [subtotal, setSubtotal] = useState(CurrencyConversion(price));
     const [additional, setAdditional] = useState<any[]>([]);
-    console.log(additional)
+    const [observation, setObservation] = useState("");
+    
     function minus() {
         if (counter === 0 || total === 0) {
             return;
         }
         if (counter === 1) {
-            const newArray = [...cartProducts];
-            let position = newArray.findIndex(item => item.id === id);
-            let remove = newArray.splice(position, 1);
-            setCartProducts(newArray);
+            const newCart = [...cartProducts];
+            let position = newCart.findIndex(product => product.id === id);
+            newCart.splice(position, 1);
+            setCartProducts(newCart);
         }
         const newCounter = counter - 1;
         setCounter(newCounter > 0 ? newCounter : 0);
-        const newSubtotal = (newCounter * price).toLocaleString("pt-BR");
-        setSubtotal(newSubtotal);
-        setTotal((prevTotal) => prevTotal - price);
+        setTotal((amount) => amount - price);
     }
     function plus() {
         const newCounter = counter + 1;
         setCounter(newCounter);
-        const newSubtotal = (newCounter * price).toLocaleString("pt-BR");
-        setSubtotal(newSubtotal);
-        setTotal((prevTotal) => prevTotal + price);
+        setTotal((amount) => amount + price);
     }
 
+    function AddToCart() {
+        const item = {
+            product: {
+                id, name, image, price, quantity: counter, observation
+            },
+            additional
+        }
+        const addItem = [...cartProducts, item];
+        setCartProducts(addItem);
+    }
     return (
         <DetailContainer>
             <DetailBox>
@@ -81,7 +87,8 @@ export default function ProductDetail({ id, name, image, description, price }: P
 
                 <ObservationContainer>
                     <h2>Observações</h2>
-                    <textarea className="observation-box" placeholder="Adicione uma observação ao pedido"></textarea>
+                    <textarea className="observation-box" placeholder="Adicione uma observação ao pedido"
+                        onChange={(e) => setObservation(e.target.value)}></textarea>
                 </ObservationContainer>
 
                 <SummaryContainer>
@@ -102,7 +109,7 @@ export default function ProductDetail({ id, name, image, description, price }: P
 
                 <ButtonBoxDetails>
                     <button onClick={() => setSelected(false)}>Cancelar</button>
-                    <button>Adicionar ao carrinho</button>
+                    <button onClick={AddToCart}>Adicionar ao carrinho</button>
                 </ButtonBoxDetails>
             </DetailBox>
         </DetailContainer>
