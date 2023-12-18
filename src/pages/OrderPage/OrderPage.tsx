@@ -13,7 +13,8 @@ import Payment from "../../components/Payment/Payment";
 
 export default function Order() {
 
-    const { categories, setCategories, products, setProducts, setSideDishes, selected, selectedProduct } = useContext(ProductContext);
+    const { categories, setCategories, products, setProducts, setSideDishes,
+        selected, selectedProduct, productsList } = useContext(ProductContext);
 
     useEffect(() => {
         const url = `${import.meta.env.VITE_API_URL}/`;
@@ -48,7 +49,13 @@ export default function Order() {
             <Subtitle>Selecione um produto para adicionar ao seu pedido</Subtitle>
 
             {<ProductsContainer>
-                {products.map((prod, i) => <Product key={i} {...prod} />)}
+                {productsList.length > 0 && (
+                    productsList.map((prod, i) => <Product key={i} {...prod} />)
+                )}
+                {productsList.length === 0 && (
+                    products.map((prod, i) => <Product key={i} {...prod} />)
+                )}
+
             </ProductsContainer>}
 
             <FinalizeOrder></FinalizeOrder>

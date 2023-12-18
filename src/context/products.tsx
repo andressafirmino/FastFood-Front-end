@@ -11,9 +11,11 @@ interface ProductContextProps {
     cart: any[];
     setCart: React.Dispatch<React.SetStateAction<any[]>>;
     selected: boolean;
-    setSelected: React.Dispatch<React.SetStateAction<boolean>>
-    selectedProduct: ProductOrEmpty,
-    setSelectedProduct: React.Dispatch<React.SetStateAction<ProductOrEmpty>>
+    setSelected: React.Dispatch<React.SetStateAction<boolean>>;
+    selectedProduct: ProductOrEmpty;
+    setSelectedProduct: React.Dispatch<React.SetStateAction<ProductOrEmpty>>;
+    productsList: ProductType[];
+    setProductsList: React.Dispatch<React.SetStateAction<ProductType[]>>;
 }
 
 export const ProductContext = createContext<ProductContextProps>({
@@ -28,7 +30,9 @@ export const ProductContext = createContext<ProductContextProps>({
     selected: false,
     setSelected: () => { },
     selectedProduct: {},
-    setSelectedProduct: () => { }
+    setSelectedProduct: () => { },
+    productsList: [],
+    setProductsList: () => { }
 
 });
 
@@ -44,7 +48,7 @@ export default function ProductProvider({ children }: ProductProviderProps) {
     const [cart, setCart] = useState<any[]>([]);
     const [selected, setSelected] = useState<boolean>(false);
     const [selectedProduct, setSelectedProduct] = useState<ProductOrEmpty>({});
-
+    const [productsList, setProductsList] = useState<ProductType[]>([]);
 
     return (
         <ProductContext.Provider value={{
@@ -53,7 +57,8 @@ export default function ProductProvider({ children }: ProductProviderProps) {
             sideDishes, setSideDishes,
             cart, setCart,
             selected, setSelected,
-            selectedProduct, setSelectedProduct
+            selectedProduct, setSelectedProduct,
+            productsList, setProductsList,
         }}>
             {children}
         </ProductContext.Provider>
