@@ -4,6 +4,7 @@ import CurrencyConversion from "../../utils/CurrencyConversion";
 import { AdditionalContainer, ButtonBoxDetails, CounterButton, DetailBox, DetailContainer, DetailItem, ObservationContainer, SummaryContainer } from "./style";
 import { ProductContext } from "../../context/products";
 import AdditionalToggle from "../../utils/AdditionalToggle";
+import SubtotalCalculation from "../../utils/SubtotalCalculation";
 
 export default function ProductDetail({ id, name, image, description, price }: ProductType) {
     const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts } = useContext(ProductContext);
@@ -96,7 +97,7 @@ export default function ProductDetail({ id, name, image, description, price }: P
                     )}
                     <div className="dashed-line"></div>
                     <p>Total do pedido:</p>
-                    <div className="total">{CurrencyConversion(counter * price)}</div>
+                    <div className="total">{SubtotalCalculation(counter, price, additional)}</div>
                 </SummaryContainer>
 
                 <ButtonBoxDetails>
