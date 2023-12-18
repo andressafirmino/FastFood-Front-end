@@ -5,14 +5,14 @@ import { AdditionalContainer, ButtonBoxDetails, CounterButton, DetailBox, Detail
 import { ProductContext } from "../../context/products";
 
 export default function ProductDetail({ name, image, description, price }: ProductType) {
-    const { sideDishes } = useContext(ProductContext);
+    const { sideDishes, setSelected } = useContext(ProductContext);
 
     return (
         <DetailContainer>
             <DetailBox>
                 <h1>Revise seu pedido!</h1>
                 <DetailItem>
-                    <p className="close">X</p>
+                    <p className="close" onClick={() => setSelected(false)}>X</p>
                     <div className="image-box">
                         <img src={image} />
                         <div className="image-box-bottom"></div>
@@ -65,7 +65,7 @@ export default function ProductDetail({ name, image, description, price }: Produ
                 </SummaryContainer>
 
                 <ButtonBoxDetails>
-                    <button>Cancelar</button>
+                    <button onClick={() => setSelected(false)}>Cancelar</button>
                     <button>Adicionar ao carrinho</button>
                 </ButtonBoxDetails>
             </DetailBox>
