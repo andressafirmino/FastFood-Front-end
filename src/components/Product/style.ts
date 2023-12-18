@@ -5,12 +5,12 @@ export const ProductContainer = styled.div`
     width: 258px;
     height: 324px;
     border-radius: 15px;
-    background-color: aquamarine;
     margin-right: 90px;
     margin-bottom: 45px;
     position: relative;
     background-color: #125c13;
     box-shadow: 0px 4px 6px 0px #0000000D;
+    position: relative;
 
     /* background-image: url(${Cutlery});
     background-size: cover; 
@@ -64,4 +64,26 @@ export const ProductContainer = styled.div`
         margin-top: 15px;
     }
     }
+
+    .selected {
+        width: 258px;
+        height: 324px;
+        border-radius: 15px;
+        background-color: rgb(18, 92, 19, 0.3);
+        position: absolute;
+        top:0;
+        left: 0;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    svg {
+            font-size: 50px;
+            font-weight: 700;
+            color: #FFFFFF;
+            opacity: 1;
+        }
 `

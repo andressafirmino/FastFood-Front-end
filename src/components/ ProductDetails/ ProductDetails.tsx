@@ -11,7 +11,7 @@ export default function ProductDetail({ id, name, image, description, price }: P
     const [counter, setCounter] = useState(1);
     const [additional, setAdditional] = useState<any[]>([]);
     const [observation, setObservation] = useState("");
-    
+
     function minus() {
         if (counter === 0 || total === 0) {
             return;
@@ -41,6 +41,7 @@ export default function ProductDetail({ id, name, image, description, price }: P
         }
         const addItem = [...cartProducts, item];
         setCartProducts(addItem);
+        setSelected(false);
     }
     return (
         <DetailContainer>
