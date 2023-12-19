@@ -43,8 +43,6 @@ export default function ProductDetail({ id, name, image, description, price }: P
         const addItem = [...cartProducts, item];
         setCartProducts(addItem);
         const subtotal = TotalCalculation(counter, price, additional);
-        console.log(subtotal)
-        console.log(total)
         setTotal((amount) => amount + subtotal);
         console.log(total)
         if (additional.length > 0) {

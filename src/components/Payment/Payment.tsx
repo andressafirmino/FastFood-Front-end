@@ -4,8 +4,10 @@ import { FaCreditCard } from "react-icons/fa6";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import OrdemCompleted from "../OrderCompleted/OrderCompleted";
 import Summary from "../Summary/Summary";
+import { useState } from "react";
 
 export default function Payment() {
+    const [name, setName] = useState<string>("");
     return (
         <PaymentContainer>
             {/* <OrdemCompleted /> */}
@@ -24,7 +26,7 @@ export default function Payment() {
                     <div className="client-data">
                         <div className="client-data-input">
                             <p className="subtitle">Nome do cliente:</p>
-                            <input placeholder="Primeiro nome" />
+                            <input placeholder="Primeiro nome" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="client-data-code">
                             <p className="subtitle">Código</p>
