@@ -4,26 +4,42 @@ import { FaCreditCard } from "react-icons/fa6";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import OrdemCompleted from "../OrderCompleted/OrderCompleted";
 import Summary from "../Summary/Summary";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ProductContext } from "../../context/products";
+import TogglePaymentMethod from "../../utils/TogglePaymentMethod";
 
 export default function Payment() {
+    const { total } = useContext(ProductContext);
     const [name, setName] = useState<string>("");
     const [paymentMethod, setPaymentMethod] = useState<string[]>([]);
-    console.log(paymentMethod)
-    function togglePaymentMethod(method: string) {
-        if (paymentMethod.includes(method)) {
-            const newMethod = [...paymentMethod];
-            
-            let position = newMethod.findIndex(met => met === method);
-            newMethod.splice(position, 1);
-            setPaymentMethod(newMethod);
+    const [cashPayment, setCashPayment] = useState<string>();
+    const [cashback, setCashBack] = useState<string>("");
+    console.log(total)
+
+    function checkString(value: string) {
+        const match = value.match(/^(\d+([,])?\d{0,2})?/);
+
+        if (match) {
+            const numericValue = match[0].replace(/[^\d,]/g, '');
+            setCashPayment(numericValue);
+        }
+
+    }
+
+    function calculationCashback() {
+        const cash = (typeof cashPayment === "string" ? parseFloat(cashPayment.replace(',', '.')) : 0);
+        const cashInCents = 100 * cash;
+        if (cashInCents > total) {
+            const valueCashBack = (((cashInCents - total) / 100).toFixed(2)).toString().replace('.', ',')
+            setCashBack("R$ " + valueCashBack);
         } else {
-            if(paymentMethod.length < 2) {
-                const addMethod = [...paymentMethod, method];
-                setPaymentMethod(addMethod);
-            }           
+            setCashBack("");
         }
     }
+
+    useEffect(() => {
+        calculationCashback();
+    }, [cashPayment]);
     return (
         <PaymentContainer>
             {/* <OrdemCompleted /> */}
@@ -59,35 +75,43 @@ export default function Payment() {
                                 <FaCreditCard />
                                 <p>Débito</p>
                             </div>
-                            <button onClick={() => togglePaymentMethod("debit")} 
-                            className={paymentMethod.includes("debit") ? "selected" : ""}></button>
+                            <button onClick={() => TogglePaymentMethod("debit", paymentMethod, setPaymentMethod)}
+                                className={paymentMethod.includes("debit") ? "selected" : ""}></button>
                         </FormPayment>
                         <FormPayment>
                             <div className="payment-box">
                                 <FaCreditCard />
                                 <p>Crédito</p>
                             </div>
-                            <button onClick={() => togglePaymentMethod("credit")}
-                            className={paymentMethod.includes("credit") ? "selected" : ""}></button>
+                            <button onClick={() => TogglePaymentMethod("credit", paymentMethod, setPaymentMethod)}
+                                className={paymentMethod.includes("credit") ? "selected" : ""}></button>
                         </FormPayment>
                         <FormPayment>
                             <div className="payment-box">
                                 <FaMoneyBillAlt />
                                 <p>Dinheiro</p>
                             </div>
-                            <button onClick={() => togglePaymentMethod("money")}
-                            className={paymentMethod.includes("money") ? "selected" : ""}></button>
+                            <button onClick={() => TogglePaymentMethod("money", paymentMethod, setPaymentMethod)}
+                                className={paymentMethod.includes("money") ? "selected" : ""}></button>
                         </FormPayment>
-                        <div className="payment-data">
-                            <div className="payment-data-input">
-                                <p className="subtitle">Valor entregue:</p>
-                                <input />
+                        {paymentMethod.includes("money") && (
+                            <div className="payment-data">
+                                <div className="payment-data-input">
+                                    <p className="subtitle">Valor entregue:</p>
+                                    <div>
+                                        <p>R$</p>
+                                        <input type="text" value={cashPayment}
+                                            onChange={e => checkString(e.target.value)}
+                                            inputMode="numeric" />
+                                    </div>
+
+                                </div>
+                                <div className="payment-data-input">
+                                    <p className="subtitle">Troco</p>
+                                    <div>{cashback}</div>
+                                </div>
                             </div>
-                            <div className="payment-data-input">
-                                <p className="subtitle">Troco</p>
-                                <div></div>
-                            </div>
-                        </div>
+                        )}
                     </FormPaymentContainer>
                 </div>
             </div>

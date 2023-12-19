@@ -52,7 +52,7 @@ export const ProductContext = createContext<ProductContextProps>({
     disabled: true,
     setDisabled: () => { },
     finish: false,
-    setFinish: () => { }
+    setFinish: () => { },
 });
 
 interface ProductProviderProps {
@@ -87,7 +87,7 @@ export default function ProductProvider({ children }: ProductProviderProps) {
             cartProducts, setCartProducts,
             additionalTotal, setAdditionalTotal,
             disabled, setDisabled,
-            finish, setFinish
+            finish, setFinish,
         }}>
             {children}
         </ProductContext.Provider>

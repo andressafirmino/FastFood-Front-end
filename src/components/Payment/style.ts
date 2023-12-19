@@ -85,6 +85,10 @@ export const PaymentContainer = styled.div`
                 border: none;
                 border-radius: 3px;
                 padding-left: 15px;
+                display: flex;
+                align-items: center;
+                font-size: 20px;
+                
 
                 &:focus {
                 border-color: #bcbaba; 
