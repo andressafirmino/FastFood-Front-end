@@ -14,7 +14,8 @@ export default function Payment() {
     const [paymentMethod, setPaymentMethod] = useState<string[]>([]);
     const [cashPayment, setCashPayment] = useState<string>();
     const [cashback, setCashBack] = useState<string>("");
-    console.log(total)
+    const [finish, setFinish] = useState<boolean>(false);
+
 
     function checkString(value: string) {
         const match = value.match(/^(\d+([,])?\d{0,2})?/);
@@ -23,7 +24,6 @@ export default function Payment() {
             const numericValue = match[0].replace(/[^\d,]/g, '');
             setCashPayment(numericValue);
         }
-
     }
 
     function calculationCashback() {
@@ -36,10 +36,23 @@ export default function Payment() {
             setCashBack("");
         }
     }
+    function canFinish() {
+        const cash = (typeof cashPayment === "string" ? parseFloat(cashPayment.replace(',', '.')) : 0);
+        const cashInCents = 100 * cash;
+        console.log(name);
+        console.log(paymentMethod);
+        console.log(cashInCents < total);
+        if (name === "" || (paymentMethod.length === 0 || (paymentMethod.includes("money") && cashInCents < total))) {
+            setFinish(false);
+        } else {
+            setFinish(true);
+        }
 
+    }
     useEffect(() => {
+        canFinish();
         calculationCashback();
-    }, [cashPayment]);
+    }, [name,paymentMethod,cashPayment ]);
     return (
         <PaymentContainer>
             {/* <OrdemCompleted /> */}
@@ -116,8 +129,8 @@ export default function Payment() {
                 </div>
             </div>
             <ButtonPayment>
-                <button >Cancelar</button>
-                <button >Finalizar pedido</button>
+                <button className={finish ? "selected" : ""}>Cancelar</button>
+                <button className={finish ? "selected" : ""}>Finalizar pedido</button>
             </ButtonPayment>
         </PaymentContainer>
     )

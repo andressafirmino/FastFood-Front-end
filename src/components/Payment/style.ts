@@ -173,4 +173,16 @@ export const ButtonPayment = styled.div`
         }
     }
 
+    .selected {
+            &:first-child {
+                color: #125c13;
+                background-color: #FFFFFF;
+                border: 2px solid #125c13;
+            }
+
+            &:last-child {
+                background-color: #125c13;
+            }
+        }
+
 `
