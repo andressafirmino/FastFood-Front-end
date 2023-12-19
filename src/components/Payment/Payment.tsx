@@ -3,6 +3,7 @@ import { ButtonPayment, FormPayment, FormPaymentContainer, PaymentContainer, Wal
 import { FaCreditCard } from "react-icons/fa6";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import OrdemCompleted from "../OrderCompleted/OrderCompleted";
+import Summary from "../Summary/Summary";
 
 export default function Payment() {
     return (
@@ -17,13 +18,7 @@ export default function Payment() {
                 <div className="payment-block">
                     <p className="subtitle">Resumo da compra</p>
                     <OrderTotalSummaryContainer>
-                        <div className="summary-details">
-                            <p>1x x-burguer</p>
-                            <p>32,00</p>
-                        </div>
-                        <div className="dashed-line"></div>
-                        <p>Total do pedido:</p>
-                        <div className="total">32,00</div>
+                        <Summary />
                     </OrderTotalSummaryContainer>
 
                     <div className="client-data">

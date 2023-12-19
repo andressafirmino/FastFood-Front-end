@@ -4,7 +4,7 @@ export const OrderTotalSummaryContainer = styled.div`
     width: 80%;
     border: 1px solid #9f9f9f;
     border-radius: 3px;
-    padding: 60px;
+    padding: 30px;
     margin-bottom: 30px;
 
     p {
