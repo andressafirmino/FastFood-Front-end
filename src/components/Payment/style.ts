@@ -135,6 +135,9 @@ export const FormPayment = styled.div`
                 border: 1.5px solid #125c13;
                 cursor: pointer;
             }
+    .selected {
+        background-color: #125c13;
+    }
 `
 export const ButtonPayment = styled.div`
     width: 90%;
