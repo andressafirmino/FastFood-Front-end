@@ -8,7 +8,7 @@ import SubtotalCalculation from "../../utils/SubtotalCalculation";
 import TotalCalculation from "../../utils/TotalCalculation";
 
 export default function ProductDetail({ id, name, image, description, price }: ProductType) {
-    const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts, additionalTotal, setAdditionalTotal, setDisabled } = useContext(ProductContext);
+    const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts, additionalTotal, setAdditionalTotal, setDisabled, setSelectedProduct } = useContext(ProductContext);
     const [counter, setCounter] = useState(1);
     const [additional, setAdditional] = useState<AdditionalType[]>([]);
     const [observation, setObservation] = useState("");
@@ -26,12 +26,10 @@ export default function ProductDetail({ id, name, image, description, price }: P
         }
         const newCounter = counter - 1;
         setCounter(newCounter > 0 ? newCounter : 0);
-        setTotal((amount) => amount - price);
     }
     function plus() {
         const newCounter = counter + 1;
         setCounter(newCounter);
-        setTotal((amount) => amount + price);
     }
 
     function AddToCart() {
@@ -45,7 +43,10 @@ export default function ProductDetail({ id, name, image, description, price }: P
         const addItem = [...cartProducts, item];
         setCartProducts(addItem);
         const subtotal = TotalCalculation(counter, price, additional);
+        console.log(subtotal)
+        console.log(total)
         setTotal((amount) => amount + subtotal);
+        console.log(total)
         if (additional.length > 0) {
             const updateAdditional = [...additionalTotal, additional[0]];
             setAdditionalTotal(updateAdditional);
@@ -67,7 +68,7 @@ export default function ProductDetail({ id, name, image, description, price }: P
             <DetailBox>
                 <h1>Revise seu pedido!</h1>
                 <DetailItem>
-                    <p className="close" onClick={() => setSelected(false)}>X</p>
+                    <p className="close" onClick={() => {setSelected(false), setSelectedProduct({})}}>X</p>
                     <div className="image-box">
                         <img src={image} />
                         <div className="image-box-bottom"></div>
@@ -87,8 +88,8 @@ export default function ProductDetail({ id, name, image, description, price }: P
                 <AdditionalContainer>
                     <h2>Adicionais</h2>
                     <p>Selecione os ingredientes que você deseja adicionar a mais no seu lanche.</p>
-                    {sideDishes.map(sideD => (
-                        <div className="additional-box">
+                    {sideDishes.map((sideD, i) => (
+                        <div className="additional-box" key={i}>
                             <div className="additional-image">
                                 <img src={sideD.image} />
                             </div>

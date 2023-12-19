@@ -6,9 +6,8 @@ import CurrencyConversion from "../../utils/CurrencyConversion";
 import { FaCheck } from "react-icons/fa6";
 
 export default function Product({ id, name, price, description, image }: ProductType) {
-
     const { setSelected, setSelectedProduct, cartProducts } = useContext(ProductContext)
-    console.log(cartProducts)
+
     return (
         <ProductContainer onClick={() => { setSelectedProduct({ id, name, price, description, image }), setSelected(true) }}>
             {cartProducts.some(prod => prod.product.id === id) && (

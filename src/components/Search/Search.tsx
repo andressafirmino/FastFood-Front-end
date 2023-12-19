@@ -5,13 +5,11 @@ import FilteredProducts from "../../utils/FilteredProducts";
 
 export default function Search() {
 
-    const { products, productsList, setProductsList } = useContext(ProductContext)
+    const { products, setProductsList } = useContext(ProductContext)
     const [searchText, setSearchText] = useState("");
 
-    console.log(productsList)
-
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); 
+        e.preventDefault();
         FilteredProducts(searchText, products, setProductsList);
     };
 
