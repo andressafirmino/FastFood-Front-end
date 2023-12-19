@@ -28,4 +28,17 @@ export const ButtonBox = styled.div`
             cursor: pointer;
         }
     }
+
+
+    .selected {
+            &:first-child {
+                color: #125c13;
+                background-color: #FFFFFF;
+                border: 2px solid #125c13;
+            }
+
+            &:last-child {
+                background-color: #125c13;
+            }
+        }
 `

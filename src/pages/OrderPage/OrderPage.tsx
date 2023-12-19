@@ -15,8 +15,8 @@ import Summary from "../../components/Summary/Summary";
 export default function Order() {
 
     const { categories, setCategories, products, setProducts, setSideDishes,
-        selected, selectedProduct, productsList, cartProducts } = useContext(ProductContext);
-    
+        selected, selectedProduct, productsList } = useContext(ProductContext);
+
     useEffect(() => {
         const url = `${import.meta.env.VITE_API_URL}/`;
         axios.get(url)
@@ -60,7 +60,7 @@ export default function Order() {
             </ProductsContainer>}
 
             <Summary />
-            <FinalizeOrder></FinalizeOrder>
+            <FinalizeOrder />
             {/* <Payment /> */}
         </OrderContainer>
     )

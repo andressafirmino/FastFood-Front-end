@@ -8,7 +8,7 @@ import SubtotalCalculation from "../../utils/SubtotalCalculation";
 import TotalCalculation from "../../utils/TotalCalculation";
 
 export default function ProductDetail({ id, name, image, description, price }: ProductType) {
-    const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts, additionalTotal, setAdditionalTotal } = useContext(ProductContext);
+    const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts, additionalTotal, setAdditionalTotal, setDisabled } = useContext(ProductContext);
     const [counter, setCounter] = useState(1);
     const [additional, setAdditional] = useState<AdditionalType[]>([]);
     const [observation, setObservation] = useState("");
@@ -51,6 +51,7 @@ export default function ProductDetail({ id, name, image, description, price }: P
             setAdditionalTotal(updateAdditional);
         }
         setAdditional([]);
+        setDisabled(false);
         setSelected(false);
     }
 
