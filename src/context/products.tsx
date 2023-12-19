@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
-import { CategoryType, ProductOrEmpty, ProductType, SideDishType } from "../protocols";
+import { AdditionalType, CartOrEmpty, CategoryType, ProductOrEmpty, ProductType, SideDishType } from "../protocols";
 
 interface ProductContextProps {
     categories: CategoryType[];
@@ -8,8 +8,8 @@ interface ProductContextProps {
     setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
     sideDishes: SideDishType[];
     setSideDishes: React.Dispatch<React.SetStateAction<SideDishType[]>>;
-    cart: any[];
-    setCart: React.Dispatch<React.SetStateAction<any[]>>;
+    cart: CartOrEmpty[];
+    setCart: React.Dispatch<React.SetStateAction<CartOrEmpty[]>>;
     selected: boolean;
     setSelected: React.Dispatch<React.SetStateAction<boolean>>;
     selectedProduct: ProductOrEmpty;
@@ -20,6 +20,8 @@ interface ProductContextProps {
     setTotal: React.Dispatch<React.SetStateAction<number>>;
     cartProducts: any[];
     setCartProducts: React.Dispatch<React.SetStateAction<any[]>>;
+    additionalTotal: AdditionalType[];
+    setAdditionalTotal: React.Dispatch<React.SetStateAction<AdditionalType[]>>;
 }
 
 export const ProductContext = createContext<ProductContextProps>({
@@ -40,7 +42,9 @@ export const ProductContext = createContext<ProductContextProps>({
     total: 0,
     setTotal: () => { },
     cartProducts: [],
-    setCartProducts: () => { }
+    setCartProducts: () => { },
+    additionalTotal: [],
+    setAdditionalTotal: () => { },
 });
 
 interface ProductProviderProps {
@@ -57,7 +61,8 @@ export default function ProductProvider({ children }: ProductProviderProps) {
     const [selectedProduct, setSelectedProduct] = useState<ProductOrEmpty>({});
     const [productsList, setProductsList] = useState<ProductType[]>([]);
     const [total, setTotal] = useState<number>(0);
-    const [cartProducts, setCartProducts] = useState<any[]>([])
+    const [cartProducts, setCartProducts] = useState<any[]>([]);
+    const [additionalTotal, setAdditionalTotal] = useState<AdditionalType[]>([]);
 
     return (
         <ProductContext.Provider value={{
@@ -69,7 +74,8 @@ export default function ProductProvider({ children }: ProductProviderProps) {
             selectedProduct, setSelectedProduct,
             productsList, setProductsList,
             total, setTotal,
-            cartProducts, setCartProducts
+            cartProducts, setCartProducts,
+            additionalTotal, setAdditionalTotal
         }}>
             {children}
         </ProductContext.Provider>

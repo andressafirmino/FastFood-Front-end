@@ -1,24 +1,26 @@
 import { useContext, useState } from "react";
-import { ProductType } from "../../protocols";
+import { AdditionalType, ProductType } from "../../protocols";
 import CurrencyConversion from "../../utils/CurrencyConversion";
 import { AdditionalContainer, ButtonBoxDetails, CounterButton, DetailBox, DetailContainer, DetailItem, ObservationContainer, SummaryContainer } from "./style";
 import { ProductContext } from "../../context/products";
 import AdditionalToggle from "../../utils/AdditionalToggle";
 import SubtotalCalculation from "../../utils/SubtotalCalculation";
+import TotalCalculation from "../../utils/TotalCalculation";
 
 export default function ProductDetail({ id, name, image, description, price }: ProductType) {
-    const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts } = useContext(ProductContext);
+    const { sideDishes, setSelected, total, setTotal, cartProducts, setCartProducts, additionalTotal, setAdditionalTotal } = useContext(ProductContext);
     const [counter, setCounter] = useState(1);
-    const [additional, setAdditional] = useState<any[]>([]);
+    const [additional, setAdditional] = useState<AdditionalType[]>([]);
     const [observation, setObservation] = useState("");
 
     function minus() {
-        if (counter === 0 || total === 0) {
+        if (counter === 1 || total === 0) {
             return;
         }
-        if (counter === 1) {
+        if (counter === 2) {
             const newCart = [...cartProducts];
-            let position = newCart.findIndex(product => product.id === id);
+            console.log(newCart)
+            let position = newCart.findIndex(prod => prod.product.id === id);
             newCart.splice(position, 1);
             setCartProducts(newCart);
         }
@@ -39,10 +41,26 @@ export default function ProductDetail({ id, name, image, description, price }: P
             },
             additional
         }
+
         const addItem = [...cartProducts, item];
         setCartProducts(addItem);
+        const subtotal = TotalCalculation(counter, price, additional);
+        setTotal((amount) => amount + subtotal);
+        if (additional.length > 0) {
+            const updateAdditional = [...additionalTotal, additional[0]];
+            setAdditionalTotal(updateAdditional);
+        }
+        setAdditional([]);
         setSelected(false);
     }
+
+    /*    function removeToCart(id: number) {
+           const updatedCart = [...cartProducts];
+           const removedItem = updatedCart.splice(id, 1)[0];
+           setCartProducts(updatedCart);
+           const subtotal = TotalCalculation(removedItem.product.quantity, removedItem.product.price, removedItem.additional);
+           setTotal((amount) => amount - subtotal);
+       } */
     return (
         <DetailContainer>
             <DetailBox>

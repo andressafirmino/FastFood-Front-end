@@ -14,7 +14,6 @@ export type ProductType = {
     category: string;
 }
 
-export type EmptyProduct = {};
 
 export type ProductOrEmpty = EmptyProduct | ProductType;
 
@@ -26,3 +25,28 @@ export type SideDishType = {
     image: string
     productId: null
 }
+
+export type AdditionalType = {
+    name: string;
+    price: number
+}
+
+export type AdditionalOrEmpty = AdditionalType | EmptyProduct;
+
+export type EmptyProduct = {};
+
+export type EmptyType = [];
+
+export type CartType = {
+    product: {
+        id: number,
+        name: string;
+        image: string;
+        price: number;
+        quantity: number;
+        observation: string;
+    };
+    additional: AdditionalOrEmpty[]
+}
+
+export type CartOrEmpty = EmptyType | CartType;

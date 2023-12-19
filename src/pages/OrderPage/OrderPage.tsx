@@ -10,12 +10,13 @@ import { ProductContext } from "../../context/products";
 import ProductDetail from "../../components/ ProductDetails/ ProductDetails";
 import { ProductType } from "../../protocols";
 import Payment from "../../components/Payment/Payment";
+import Summary from "../../components/Summary/Summary";
 
 export default function Order() {
 
     const { categories, setCategories, products, setProducts, setSideDishes,
         selected, selectedProduct, productsList, cartProducts } = useContext(ProductContext);
-    console.log(cartProducts)
+    
     useEffect(() => {
         const url = `${import.meta.env.VITE_API_URL}/`;
         axios.get(url)
@@ -58,6 +59,7 @@ export default function Order() {
 
             </ProductsContainer>}
 
+            <Summary />
             <FinalizeOrder></FinalizeOrder>
             {/* <Payment /> */}
         </OrderContainer>
