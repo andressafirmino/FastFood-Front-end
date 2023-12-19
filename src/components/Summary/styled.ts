@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const OrderTotalSummaryContainer = styled.div`
-    width: 80%;
+export const SummaryContainer = styled.div`
+    width: 100%;
     border: 1px solid #9f9f9f;
     border-radius: 3px;
-    padding: 30px;
+    padding: 60px;
     margin-bottom: 30px;
 
     p {
